@@ -93,12 +93,11 @@ def welcomeMsg():
 
 
 
-# @app.before_request
-# def require_login():
-#     allowed_routes = ["validate_login","validate_signUp"]
-#     if request.endpoint not in allowed_routes and "user" not in session:
-#         return redirect("/")
-
+@app.before_request
+def require_login():
+    allowed_routes = ["loginPage","signUpPage","validateLogin","validateSignUp"]
+    if request.endpoint not in allowed_routes and "user" not in session:
+        return redirect("/")
 
 # shows the login page as the default page before login
 @app.route("/")
@@ -160,12 +159,12 @@ def addPost():
 
     return render_template("addPost.html",pageTitle ="Blog Added Page", title_error = title_error, body_error = body_error)
         
-# #show individual blog when link is clicked on
-@app.route("/show")
-def showPost():
-    blogID = request.args.get("id")
-    new_blog = Blog.query.filter_by(id = blogID).first()
-    return render_template("newPost.html",pageTitle ="requested post", blogTitle = new_blog.title, blogBody = new_blog.body, record = new_blog.record )
+# # #show individual blog when link is clicked on
+# @app.route("/show")
+# def showPost():
+#     blogID = request.args.get("id")
+#     new_blog = Blog.query.filter_by(id = blogID).first()
+#     return render_template("newPost.html",pageTitle ="requested post", blogTitle = new_blog.title, blogBody = new_blog.body, record = new_blog.record )
 
 
 
