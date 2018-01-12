@@ -1,0 +1,37 @@
+
+.blog_title{
+    font-size: 2vmin;
+    margin-top: 10px;
+    padding:5px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.blog_body{
+    font-size: 2vmin;
+    padding:5%;
+    margin: 5% 5% 8% 5%;
+}
+
+.blog_content{
+    margin:0 5% 5% 5%;
+    width:50%;
+    list-style: none;
+    border-bottom: solid; 
+    border-radius: 10px;
+    
+}
+
+.blog_container{
+margin:0 5% 5% 5%;
+}
+
+.date{
+    margin: 5%;
+    font-size: 2vmin;
+    
+}
+
+li{
+    display: inline-block;
+    margin-left: 60px;
+}

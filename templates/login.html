@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/validate_login"  method="POST" >
+    <fieldset>
+        <h1>Login</h1>
+        <div>
+            
+        <label for = "username" >Username </label>
+        <input id="username" type="text" name="username" required/>
+        <span class ="errorMessage">{{error_message}}</span>
+
+        <label for = "password" >Password </label>
+        <input id="password" type="text" name="password" required/>
+        <span class ="errorMessage">{{error_message}}</span>
+    
+    
+        <input id="submitBTN" type="submit" name="submit" />
+        
+    </div>
+
+    </fieldset>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock%}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageTitle}}</title>
+    <link rel ="stylesheet" type="text/css" href="static/home.css"/>
+   <link rel ="stylesheet" type="text/css" href="static/all_blogs.css"/> 
+
+</head>
+<body>
+        <ul>
+                <li ><a href="/main">Main Blog Page</a></li>
+                <li ><a href="/newPost">Add a Blog Entry</a></li> 
+            </ul>
+
+            <div>
+                <a href="/logout">logout</a>
+            </div>
+            
+{% block content %}
+{% endblock%}
+
+
+
+</body>
+</html>

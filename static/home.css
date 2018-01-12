@@ -1,0 +1,47 @@
+
+base-Li{
+    display: inline-block;
+    margin-left: 60px;
+}
+
+
+h1{
+    text-align: center;
+}
+
+fieldset{
+    margin: 100px;
+    padding: 40px;
+}
+
+label{
+    display: block;
+    font-weight:bold
+}
+input{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#submitBTN{
+    display: block;
+}
+
+#titleInput{
+    width: 350px;
+    
+}
+
+textarea{
+    display: block;
+    margin-bottom: 80px;
+    height: 200px;
+    width: 500px;
+    
+}
+
+
+
+.errorMessage{
+    color:red;
+}
