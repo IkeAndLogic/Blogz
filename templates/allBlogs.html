@@ -14,7 +14,7 @@ NO Content yet
   {%for blog in all_blogs %}     
 
                 <li class = "blog_content"> 
-                <h2 class = "blog_title"> <a href = "/show"> {{blog.title}}</a></h2>
+                <h2 class = "blog_title"> <a href = "/show?id={{blog.id}}"> {{blog.title}}</a></h2>
                 <p class = "blog_body">{{blog.body}}</p>
                 <div class = "blog_date">{{blog.record}}  </div>
                 </li>    
