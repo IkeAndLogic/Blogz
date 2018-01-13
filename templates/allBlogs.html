@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-
-
 {%if not all_blogs%}
  
 NO Content yet
   {%else%}
+
+
+
+
+
   <ul class = "blog_container"> 
  
 
@@ -17,9 +20,8 @@ NO Content yet
                 <h2 class = "blog_title"> <a href = "/show?id={{blog.id}}"> {{blog.title}}</a></h2>
                 <p class = "blog_body">{{blog.body}}</p>
                 <div class = "blog_date">{{blog.record}}  </div>
+                <p class = "author"> <a href = "/show_user?username={{blog.owner.username}}">{{blog.owner.username}} </a></p>
                 </li>    
-        
-
                 {%endfor%}
         </ul>
 

@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, session
+from flask import Flask, request, redirect, render_template, session,flash
 import cgi
 from flask_sqlalchemy import SQLAlchemy
 from validateCode import * # this file contians all the verification codes
@@ -18,11 +18,10 @@ class User(db.Model):
     username = db.Column(db.String(120),unique=True) #unique
     hashPassword = db.Column(db.String(120))
     saltPassword = db.Column(db.String(5))
-    blogs = db.Column(db.String(120))
     email = db.Column(db.String(120))
 
     record = db.Column(db.String(40))
-    blog = db.relationship('Blog', backref='owner') # links class Blog to class User  
+    blogs = db.relationship('Blog', backref='owner') # links class Blog to class User  
 
     def __init__(self, username,hashPassword, saltPassword, email = None):
         self.username = username
@@ -68,6 +67,7 @@ def validateSignUp():
             new_user = User( userName, hashedPassword, salt)
             db.session.add(new_user)
             db.session.commit()
+            session["user"] = userName
             return redirect ("/welcome")
         else:
             duplicate = "User Name not avaliable. Please Choose a different User Name"
@@ -111,12 +111,15 @@ def validateLogin():
     userName = request.form["username"]
     passWord = request.form["password"]
     user = User.query.filter_by(username = userName).first()
+    
     if user:
         hashed_pw = user.hashPassword
         salt_pw = user.saltPassword
         if hashPassword(passWord, salt_pw.encode()) == (hashed_pw, salt_pw):
             session["user"] = user.username
-            return render_template("allBlogs.html")
+            flash ("logged in as"+ session["user"])
+            all_blogs = Blog.query.all()
+            return render_template("allBlogs.html",all_blogs = all_blogs)
     return render_template("login.html", error_message= "invalid login information")   
 
 
@@ -124,6 +127,7 @@ def validateLogin():
 @app.route("/logout")
 def logout():
     del session["user"]
+    flash ("you logged out")
     return redirect("/")
 
 
@@ -178,14 +182,24 @@ def displayAllPost():
 
 
 
+@app.route("/show_user")
+def display_user():
+    username = request.args.get("username")
+    user = User.query.filter_by(username = username).first()
+    return render_template ("allBlogs.html", all_blogs = user.blogs)
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     app.run()
 
 
-# def current_user():
-#     if "user" in session:
-#         return User.query.filter_by(email = session["user"].first())
-#     return None
-
-# def get_blog():
-#     return Blogs.query.filter_by(owner_id = current_user().id).all()

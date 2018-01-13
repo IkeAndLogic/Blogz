@@ -8,17 +8,42 @@
 
 </head>
 <body>
+    
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class=flashes>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
+
+
+
+
+
+
+
+
+
+    {%if session["user"]%}
         <ul>
                 <li ><a href="/main">Main Blog Page</a></li>
                 <li ><a href="/newPost">Add a Blog Entry</a></li> 
-            </ul>
-
-            <div>
                 <a href="/logout">logout</a>
+            </ul>
+{%else%}
+            <div>
+                
                 <a href="/signUp">signup</a>
 
             </div>
-            
+            {%endif%}  
+
+
+
 {% block content %}
 {% endblock%}
 
