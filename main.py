@@ -117,7 +117,7 @@ def validateLogin():
         salt_pw = user.saltPassword
         if hashPassword(passWord, salt_pw.encode()) == (hashed_pw, salt_pw):
             session["user"] = user.username
-            flash ("logged in as"+ session["user"])
+            flash ("logged in as "+ session["user"])
             all_blogs = Blog.query.all()
             return render_template("allBlogs.html",all_blogs = all_blogs)
     return render_template("login.html", error_message= "invalid login information")   

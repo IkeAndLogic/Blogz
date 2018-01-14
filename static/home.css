@@ -29,19 +29,26 @@ input{
 
 #titleInput{
     width: 350px;
-    
 }
 
 textarea{
     display: block;
     margin-bottom: 80px;
     height: 200px;
-    width: 500px;
-    
+    width: 500px; 
+}
+
+.errorMessage{
+    color:red;
 }
 
 
 
-.errorMessage{
-    color:red;
+.nav{
+margin-bottom: 5%;
+border: red;
+}
+
+.flashes{
+    color: green;
 }

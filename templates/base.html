@@ -29,17 +29,14 @@
 
 
     {%if session["user"]%}
-        <ul>
-                <li ><a href="/main">Main Blog Page</a></li>
-                <li ><a href="/newPost">Add a Blog Entry</a></li> 
-                <a href="/logout">logout</a>
-            </ul>
-{%else%}
-            <div>
-                
-                <a href="/signUp">signup</a>
+        <ul class= "nav">
+                <li class= "leftList"> <a href="/main"> Main Blog Page </a></li>
+                <li class = "leftList"> <a href="/newPost"> Add a Blog Entry </a></li> 
+                <li class= "rightList"> <a href="/logout"> logout </a></li>
+{%else%}        
+               <li class = "rightList" > <a href="/signUp"> signup </a></li>
 
-            </div>
+            </ul>
             {%endif%}  
 
 
