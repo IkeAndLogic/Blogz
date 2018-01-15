@@ -28,7 +28,7 @@ class User(db.Model):
         self.hashPassword = hashPassword
         self.saltPassword = saltPassword
         self.email = email
-        self.record = datetime.now().strftime("%m - %d- %Y %H:%M:%S")
+        self.record = datetime.now().strftime("%B - %d - %Y  %H:%M:%S")
 
 
 
@@ -42,7 +42,7 @@ class Blog(db.Model):
     def __init__(self, title, body, owner):
         self.title = title
         self.body =body
-        self.record = datetime.now().strftime("%m - %d- %Y %H:%M:%S")
+        self.record = datetime.now().strftime("%B - %d - %Y  %H:%M:%S")
         self.owner = owner
 
 
@@ -88,14 +88,15 @@ def validateSignUp():
 #welcome message after login
 @app.route("/welcome")
 def welcomeMsg():
-    return "Welcome, congrats you signed up"
+    del session["user"] # not sure if this is the right thing to do here but it gets the job done on so there's no stored session["user"] see base.html if statement
+    return render_template("welcome.html")
 
 
 
 
 @app.before_request
 def require_login():
-    allowed_routes = ["loginPage","signUpPage","validateLogin","validateSignUp"]
+    allowed_routes = ["loginPage","signUpPage","validateLogin","validateSignUp","welcomeMsg"]
     if request.endpoint not in allowed_routes and "user" not in session:
         return redirect("/")
 
@@ -188,6 +189,12 @@ def display_user():
     user = User.query.filter_by(username = username).first()
     return render_template ("allBlogs.html", all_blogs = user.blogs)
 
+
+
+@app.route("/show_singel_users")
+def displayAllUsers():
+    users = User.query.order_by(User.username).all()
+    return render_template ("singleusers.html", all_users = users)
 
 
 

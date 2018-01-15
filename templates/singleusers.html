@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{%if not all_users%}
+ 
+NO Content yet
+  {%else%}
+
+<ol class = "user_container"> 
+ 
+    {%for user in all_users %}     
+    <li class = "author"> <a href = "/show_user?username={{user.username}}">{{user.username}} </a> joined the blog on  {{user.record}}</li>    
+
+        {%endfor%}
+</ol>
+
+        {%endif%}
+
+{% endblock%}

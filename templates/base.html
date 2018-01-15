@@ -30,11 +30,13 @@
 
     {%if session["user"]%}
         <ul class= "nav">
+                <li class= "leftList"> <a href="/show_singel_users"> Blog Authors </a></li>
                 <li class= "leftList"> <a href="/main"> Main Blog Page </a></li>
                 <li class = "leftList"> <a href="/newPost"> Add a Blog Entry </a></li> 
                 <li class= "rightList"> <a href="/logout"> logout </a></li>
 {%else%}        
                <li class = "rightList" > <a href="/signUp"> signup </a></li>
+               <li class = "rightList" > <a href="/"> login </a></li>
 
             </ul>
             {%endif%}  
